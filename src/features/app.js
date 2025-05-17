@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     randomSymbols: false,
-    showTooltip: false
+    showTooltip: false,
+    showConsole: false,
 }
 
 export const app = createSlice({
@@ -15,9 +16,12 @@ export const app = createSlice({
         toogleShowTooltip: (state, action) => {
             state.showTooltip = action.payload
         },
+        toggleMessagesConsole: (state, action) => {
+            state.showConsole = action.payload
+        }
     }
 })
 
-export const { toogleRandomSymbol, toogleShowTooltip } = app.actions
+export const { toogleRandomSymbol, toogleShowTooltip, toggleMessagesConsole } = app.actions
 
 export default app.reducer

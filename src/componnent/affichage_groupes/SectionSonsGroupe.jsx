@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import ButtonGroupeSon from "../ButtonGroupeSon";
@@ -6,13 +6,19 @@ import ButtonGroupeSon from "../ButtonGroupeSon";
 import { changeAffichage } from "../../features/hiragana";
 
 export default function SectionSonsGroupe() {
-  const hiraganas = useSelector((state) => state.hiragana.listeHiraganas);
-  console.log("liste des hiraganas : ", hiraganas) // ! log
-  const katakanas = useSelector((state) => state.hiragana.listeKatakanas)
-  console.log("liste des katakanas : ", katakanas) // ! log
 
+  const hiraganas = useSelector((state) => state.hiragana.listeHiraganas);
+  const katakanas = useSelector((state) => state.hiragana.listeKatakanas)
   const stateSymbols = useSelector((state) => state.hiragana.radioSymboles)
-  console.log("Activer l'affichage des katakanas : ", stateSymbols) // ! log
+  const showConsole = useSelector((state) => state.app.showConsole);
+
+  useEffect(() => {
+    if (showConsole) {
+      console.log("liste des hiraganas : ", hiraganas) // ! log
+      console.log("liste des katakanas : ", katakanas) // ! log
+      console.log("Activer l'affichage des katakanas : ", stateSymbols) // ! log
+    }
+  }, [])
 
   const randomSymbols = useSelector((state) => state.app.randomSymbols)
 
@@ -45,11 +51,13 @@ export default function SectionSonsGroupe() {
             nomGroupe="voyelles"
             value="A"
             hiraganas={voyelles}
+            randomMode={randomSymbols}
           />
                     <ButtonGroupeSon
             nomGroupe="petites voyelles"
             value="a"
             hiraganas={petitesVoyelles}
+            randomMode={randomSymbols}
           />
           <ButtonGroupeSon nomGroupe="groupe S" value="S" hiraganas={groupeS} randomMode={randomSymbols}/>
           <ButtonGroupeSon nomGroupe="groupe K" value="K" hiraganas={groupeK} randomMode={randomSymbols}/>

@@ -8,7 +8,7 @@ const katakana = new Katakana()
 const initialState = {
     listeHiraganas: hiraganas.getTousLesHiragana(),
     listeKatakanas: katakana.getTousLesKatakana(),
-    affichageSymboles: undefined, // groupes de symboles à afficcher
+    affichageSymboles: undefined, // groupes de symboles à afficher
     affichageTexte: "",
     radioSymboles: false // indique si ce sont les hiraganas ou katakana à afficher
 }
@@ -51,6 +51,7 @@ export const hiragana = createSlice({
          * @param {*} action 
          */
         controlAffichageTexte: (state, action) => {
+            console.log(action.payload)
 
             // Si on entre des caractères
             if (action.payload.length > state.affichageTexte.length) {
@@ -64,16 +65,20 @@ export const hiragana = createSlice({
         },
 
         /**
-         * efface le texte du champ
+         * efface un caractère du texte du champ
          * @param {*} state 
          * @param {*} action 
          */
         effacerTexte: (state, action) => {
             state.affichageTexte = ""
+        },
+
+        effacerCaractere: (state, action) => {
+            state.affichageTexte = state.affichageTexte.slice(0, -1)
         }
 
     }
 })
 
-export const { changeAffichage, stateBtnSymbols, changeAffichageTexte, controlAffichageTexte, effacerTexte } = hiragana.actions
+export const { changeAffichage, stateBtnSymbols, changeAffichageTexte, controlAffichageTexte, effacerTexte, effacerCaractere } = hiragana.actions
 export default hiragana.reducer

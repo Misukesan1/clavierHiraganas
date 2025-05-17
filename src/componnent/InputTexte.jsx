@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { controlAffichageTexte } from "../features/hiragana";
 
 export default function InputTexte({ stateInput }) {
 
@@ -10,9 +9,9 @@ export default function InputTexte({ stateInput }) {
     <>
       <input
         value={stateInput}
-        onInput={(e) => dispatch(controlAffichageTexte(e.target.value))}
         type="text"
-        className="input input-xl input-primary w-full"
+        className="input input-xl input-primary w-full focus:outline-none cursor-default"
+        readOnly
       />
     </>
   );
