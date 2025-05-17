@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { effacerTexte } from "../../features/hiragana";
+import { changeAffichage, effacerTexte, stateBtnSymbols } from "../../features/hiragana";
 
 import InputTexte from "../InputTexte";
 import Button from "../Button";
@@ -7,7 +7,9 @@ import Button from "../Button";
 export default function SectionTexte() {
 
   const valeurTexte = useSelector(state => state.hiragana.affichageTexte)
-  // console.log("texte à afficher : ", valeurTexte)
+  // console.log("texte à afficher : ", valeurTexte) // ! log
+
+  const stateSymbols = useSelector((state) => state.hiragana.radioSymboles)
 
   const dispatch = useDispatch()
 
@@ -30,14 +32,22 @@ export default function SectionTexte() {
     });
   }
 
+  const activeKatakana = () => {
+    dispatch(stateBtnSymbols(!stateSymbols))
+    dispatch(changeAffichage(undefined)) // enlever les symboles d'affichés actuelement
+  }
+
   return (
     <>
       <section className="bg-base-200 mt-5">
-        <div className="w-4xl p-8 mx-auto">
+        <div className="w-10/12 p-8 mx-auto">
           <InputTexte stateInput={valeurTexte} />
-          <div className="flex gap-4 justify-center mt-3">
-            <Button value="Copier" onClick={copierTexte} />
-            <Button value="Effacer" onClick={viderTexte} />
+          <div className="flex justify-between mt-3">
+            <div>
+              <Button value="Copier" onClick={copierTexte} className="btn btn-soft btn-primary mr-1"/>
+              <Button value="Effacer" onClick={viderTexte} className="btn btn-soft btn-primary ml-1"/>
+            </div>
+            <Button value="Katakanas" onClick={activeKatakana} className={`btn ${(stateSymbols) ? '' : 'btn-soft' } btn-secondary`}/>
           </div>
         </div>
       </section>

@@ -1,25 +1,39 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Hiragana from "../libs/class/Hiragana";
+import Katakana from "../libs/class/Katakana";
 
 const hiraganas = new Hiragana()
+const katakana = new Katakana()
 
 const initialState = {
     listeHiraganas: hiraganas.getTousLesHiragana(),
-    affichageHiragana: undefined,
-    affichageTexte: ""
+    listeKatakanas: katakana.getTousLesKatakana(),
+    affichageSymboles: undefined, // groupes de symboles à afficcher
+    affichageTexte: "",
+    radioSymboles: false // indique si ce sont les hiraganas ou katakana à afficher
 }
 
 export const hiragana = createSlice({
     name: "hiragana",
     initialState,
     reducers: {
+
+        /**
+         * surveiller l'état du bouton afficher hiraganas / katakanas
+         * @param {*} state 
+         * @param {*} action 
+         */
+        stateBtnSymbols: (state, action) => {
+            state.radioSymboles = action.payload
+        },
+        
         /**
          * change l'affichage des hiraganas en fonction du groupe de son sélectionné
          * @param {*} state 
          * @param {*} action 
          */
         changeAffichage: (state, action) => {
-            state.affichageHiragana = action.payload
+            state.affichageSymboles = action.payload
         },
 
         /**
@@ -32,7 +46,7 @@ export const hiragana = createSlice({
         },
 
         /**
-         * controle du chmp input si on entre des caractères ou qu'on efface un caractère
+         * controle du cahmp input si on entre des caractères ou qu'on efface un caractère
          * @param {*} state 
          * @param {*} action 
          */
@@ -49,6 +63,11 @@ export const hiragana = createSlice({
 
         },
 
+        /**
+         * efface le texte du champ
+         * @param {*} state 
+         * @param {*} action 
+         */
         effacerTexte: (state, action) => {
             state.affichageTexte = ""
         }
@@ -56,5 +75,5 @@ export const hiragana = createSlice({
     }
 })
 
-export const { changeAffichage, changeAffichageTexte, controlAffichageTexte, effacerTexte } = hiragana.actions
+export const { changeAffichage, stateBtnSymbols, changeAffichageTexte, controlAffichageTexte, effacerTexte } = hiragana.actions
 export default hiragana.reducer

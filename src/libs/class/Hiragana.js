@@ -13,10 +13,7 @@
 export default class Hiragana {
 
     constructor() {
-        
-        /**
-         * Voyelles
-         */
+        // Voyelles
         this.voyelles = [
             { symbole: 'あ', son: 'a' },
             { symbole: 'い', son: 'i' },
@@ -25,9 +22,16 @@ export default class Hiragana {
             { symbole: 'お', son: 'o' }
         ];
 
-        /**
-         * Groupe K
-         */
+        // Petites voyelles (utilisées pour les diphtongues et combinaisons spéciales)
+        this.petitesVoyelles = [
+            { symbole: 'ぁ', son: 'petit a' },
+            { symbole: 'ぃ', son: 'petit i' },
+            { symbole: 'ぅ', son: 'petit u' },
+            { symbole: 'ぇ', son: 'petit e' },
+            { symbole: 'ぉ', son: 'petit o' }
+        ];
+
+        // Groupe K
         this.groupeK = [
             { symbole: 'か', son: 'ka' },
             { symbole: 'き', son: 'ki' },
@@ -41,9 +45,7 @@ export default class Hiragana {
             { symbole: 'ご', son: 'go' }
         ];
 
-        /**
-         * Groupe S
-         */
+        // Groupe S
         this.groupeS = [
             { symbole: 'さ', son: 'sa' },
             { symbole: 'し', son: 'shi' },
@@ -57,9 +59,7 @@ export default class Hiragana {
             { symbole: 'ぞ', son: 'zo' }
         ];
 
-        /**
-         * Groupe T
-         */
+        // Groupe T
         this.groupeT = [
             { symbole: 'た', son: 'ta' },
             { symbole: 'ち', son: 'chi' },
@@ -73,9 +73,7 @@ export default class Hiragana {
             { symbole: 'ど', son: 'do' }
         ];
 
-        /**
-         * Groupe N
-         */
+        // Groupe N
         this.groupeN = [
             { symbole: 'な', son: 'na' },
             { symbole: 'に', son: 'ni' },
@@ -84,9 +82,7 @@ export default class Hiragana {
             { symbole: 'の', son: 'no' }
         ];
 
-        /**
-         * Groupe H
-         */
+        // Groupe H
         this.groupeH = [
             { symbole: 'は', son: 'ha' },
             { symbole: 'ひ', son: 'hi' },
@@ -105,9 +101,7 @@ export default class Hiragana {
             { symbole: 'ぽ', son: 'po' }
         ];
 
-        /**
-         * Groupe M
-         */
+        // Groupe M
         this.groupeM = [
             { symbole: 'ま', son: 'ma' },
             { symbole: 'み', son: 'mi' },
@@ -116,18 +110,21 @@ export default class Hiragana {
             { symbole: 'も', son: 'mo' }
         ];
 
-        /**
-         * Groupe Y
-         */
+        // Groupe Y
         this.groupeY = [
             { symbole: 'や', son: 'ya' },
             { symbole: 'ゆ', son: 'yu' },
             { symbole: 'よ', son: 'yo' }
         ];
 
-        /**
-         * Combinaisons avec Y
-         */
+        // Petits Y (utilisés pour les combinaisons)
+        this.petitsY = [
+            { symbole: 'ゃ', son: 'petit ya' },
+            { symbole: 'ゅ', son: 'petit yu' },
+            { symbole: 'ょ', son: 'petit yo' }
+        ];
+
+        // Combinaisons avec Y
         this.combinaisonsY = [
             { symbole: 'きゃ', son: 'kya' },
             { symbole: 'きゅ', son: 'kyu' },
@@ -164,9 +161,7 @@ export default class Hiragana {
             { symbole: 'ぴょ', son: 'pyo' }
         ];
 
-        /**
-         * Groupe R
-         */
+        // Groupe R
         this.groupeR = [
             { symbole: 'ら', son: 'ra' },
             { symbole: 'り', son: 'ri' },
@@ -175,24 +170,28 @@ export default class Hiragana {
             { symbole: 'ろ', son: 'ro' }
         ];
 
-        /**
-         * Groupe W
-         */
+        // Groupe W
         this.groupeW = [
             { symbole: 'わ', son: 'wa' },
             { symbole: 'を', son: 'wo' }
         ];
 
-        /**
-         * N
-         */
+        // Petit W (rare mais utilisé)
+        this.petitW = [
+            { symbole: 'ゎ', son: 'petit wa' }
+        ];
+
+        // Petit tsu (marque une consonne doublée/coupure)
+        this.petitTsu = [
+            { symbole: 'っ', son: 'tsu de coupure' }
+        ];
+
+        // N
         this.n = [
             { symbole: 'ん', son: 'n' }
         ];
 
-        /**
-         * Ponctuation et symboles japonais
-         */
+        // Ponctuation et symboles japonais
         this.ponctuation = [
             { symbole: '。', son: 'point' },
             { symbole: '、', son: 'virgule' },
@@ -207,13 +206,11 @@ export default class Hiragana {
         ];
     }
 
-    /**
-     * obtenir tous les hiragana
-     * @returns object
-     */
+    // Méthode pour obtenir tous les hiragana
     getTousLesHiragana() {
         return {
             voyelles: this.voyelles,
+            petitesVoyelles: this.petitesVoyelles,
             groupeK: this.groupeK,
             groupeS: this.groupeS,
             groupeT: this.groupeT,
@@ -221,28 +218,23 @@ export default class Hiragana {
             groupeH: this.groupeH,
             groupeM: this.groupeM,
             groupeY: this.groupeY,
+            petitsY: this.petitsY,
             combinaisonsY: this.combinaisonsY,
             groupeR: this.groupeR,
             groupeW: this.groupeW,
+            petitW: this.petitW,
+            petitTsu: this.petitTsu,
             n: this.n,
             ponctuation: this.ponctuation
         };
     }
 
-    /**
-     * obtenir un groupe spécifique
-     * @param {string} nomGroupe 
-     * @returns array{}
-     */
+    // Méthode pour obtenir un groupe spécifique
     getGroupe(nomGroupe) {
         return this[nomGroupe] || [];
     }
 
-    /**
-     * rechercher un hiragana par son symbole
-     * @param {string} symbole 
-     * @returns string|null
-     */
+    // Méthode pour rechercher un hiragana par son symbole
     rechercherParSymbole(symbole) {
         for (const groupe in this) {
             if (Array.isArray(this[groupe])) {
@@ -253,11 +245,7 @@ export default class Hiragana {
         return null;
     }
 
-    /**
-     * rechercher un hiragana par son son
-     * @param {string} son 
-     * @returns string|null
-     */
+    // Méthode pour rechercher un hiragana par son son
     rechercherParSon(son) {
         for (const groupe in this) {
             if (Array.isArray(this[groupe])) {
